@@ -17,13 +17,10 @@ const canvas = document.getElementById('canvas');
                 this.angle = Math.random() * Math.PI*2;    
                 this.type = type; // 'driver' or 'rider'
                 this.radius = 8;
-                this.collisionAngle = 0;
-                this.collisionSpeed = 0;
-                // Random velocity
-                const speed = 1 + Math.random() * 2;
-                const angle = Math.random() * Math.PI * 2;
-                this.vx = Math.cos(angle) * speed;
-                this.vy = Math.sin(angle) * speed;
+                this.collision_angle = 0;
+                this.collision_speed = 0;
+                this.vx = Math.cos(this.angle) * this.speed + Math.cos(this.collision_angle)*this.collision_speed
+                this.vy = Math.sin(this.angle) * this.speed + Math.cos(this.collision_angle)*this.collision_speed
                 
                 // Visual properties
                 this.color = type === 'driver' ? '#3b82f6' : '#ef4444';
