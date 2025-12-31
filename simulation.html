@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Particle Collision Simulation</title>
+    <link rel="stylesheet" href="assets/simulation.css">
+    <link rel="script" href="js/main.js">
+</head>
+<body>
+    <h1>Advanced Particle Collision Simulation</h1>
+    <p class="subtitle">Spatial optimization • Heat mapping • Multiple matching strategies</p>
+    
+    <div class="canvas-container">
+        <canvas id="heatmapCanvas" width="800" height="600"></canvas>
+        <canvas id="canvas" width="800" height="600"></canvas>
+    </div>
+    
+    <div class="controls">
+        <div class="control-group">
+            <label>Matching Strategy:</label>
+            <select id="matchingStrategy">
+                <option value="greedy">Greedy (Nearest)</option>
+                <option value="optimal">Optimal (Hungarian)</option>
+                <option value="batch">Batch Matching</option>
+                <option value="predictive">Predictive</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>Particle Type:</label>
+            <select id="particleType">
+                <option value="driver">Driver (Blue)</option>
+                <option value="rider">Rider (Red)</option>
+                <option value="random">Random</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>Collision Radius: <span id="radiusValue">30</span>px</label>
+            <input type="range" id="collisionRadius" min="10" max="100" value="30">
+        </div>
+
+        <div class="control-group">
+            <label>Particle Count:</label>
+            <input type="number" id="particleCount" min="1" max="50" value="10">
+        </div>
+
+        <div class="control-group">
+            <label class="checkbox-group">
+                <input type="checkbox" id="showGrid" onchange="toggleGrid()">
+                Show Grid
+            </label>
+        </div>
+
+        <div class="control-group">
+            <label class="checkbox-group">
+                <input type="checkbox" id="showHeatmap" onchange="toggleHeatmap()">
+                Show Heatmap
+            </label>
+        </div>
+
+        <div class="control-group">
+            <label class="checkbox-group">
+                <input type="checkbox" id="showTrails" onchange="toggleTrails()">
+                Show Trails
+            </label>
+        </div>
+
+        <button onclick="addRandomParticles()">Add Particles</button>
+        <button onclick="clearParticles()">Clear All</button>
+        <button onclick="togglePause()" id="pauseBtn">⏸ Pause</button>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <div>Drivers</div>
+            <div class="stat-value" id="driverCount">0</div>
+        </div>
+        <div class="stat">
+            <div>Riders</div>
+            <div class="stat-value" id="riderCount">0</div>
+        </div>
+        <div class="stat">
+            <div>Collisions</div>
+            <div class="stat-value" id="collisionCount">0</div>
+        </div>
+        <div class="stat">
+            <div>Avg Wait Time</div>
+            <div class="stat-value" id="avgWaitTime">0</div>
+        </div>
+        <div class="stat">
+            <div>Grid Cells</div>
+            <div class="stat-value" id="gridCellCount">0</div>
+        </div>
+        <div class="stat">
+            <div>Efficiency</div>
+            <div class="stat-value" id="efficiency">0%</div>
+        </div>
+    </div>
+
+    <div class="info-panel">
+        <h3>Current Strategy: <span id="strategyName">Greedy (Nearest)</span></h3>
+        <p id="strategyDescription">Matches particles to their nearest neighbor of opposite type. Fast but may not be globally optimal.</p>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #3b82f6;"></div>
+                <span>Drivers (Supply)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ef4444;"></div>
+                <span>Riders (Demand)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #fbbf24;"></div>
+                <span>Matched</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #10b981;"></div>
+                <span>Predicted Match</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
