@@ -123,10 +123,13 @@ const canvas = document.getElementById('canvas');
 
         function handleCollision(p1, p2) {
             totalCollisions++;
-            
             // Mark particles as collided
             p1.hasCollided = true;
             p2.hasCollided = true;
+            p1.collision_angle = p2.angle;
+            p1.collision_speed = p2.speed;
+            p2.collision_angle = p1.angle;
+            p2.collision_speed = p1.speed;    
             p1.collisionTimer = 60; // frames
             p2.collisionTimer = 60;
 
