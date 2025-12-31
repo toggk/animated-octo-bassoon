@@ -1,8 +1,6 @@
 const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
-        
         let particles = [];
-        let natural_deacceleration = -3
         let collisionRadius = 30;
         let isPaused = false;
         let showTrails = false;
@@ -13,15 +11,13 @@ const canvas = document.getElementById('canvas');
             constructor(x, y, type) {
                 this.mass = 1;
                 this.x = x;
-                this.y = y;
-                this.speed = 1 + Math.random() * 2;
-                this.angle = Math.random() * Math.PI*2;    
+                this.y = y; 
                 this.type = type; // 'driver' or 'rider'
                 this.radius = 8;
-                this.collision_angle = 0;
-                this.collision_speed = 0;
-                this.vx = Math.cos(this.angle) * this.speed + Math.cos(this.collision_angle)*this.collision_speed
-                this.vy = Math.sin(this.angle) * this.speed + Math.cos(this.collision_angle)*this.collision_speed
+                let speed = 1 + Math.random() * 2;
+                let angle = Math.random() * Math.PI*2;
+                this.vx = Math.cos(angle) * speed 
+                this.vy = Math.sin(angle) * speed 
                 
                 // Visual properties
                 this.color = type === 'driver' ? '#3b82f6' : '#ef4444';
@@ -132,16 +128,9 @@ const canvas = document.getElementById('canvas');
             totalCollisions++;
             // Mark particles as collided
             p1.hasCollided = true;
-            p2.hasCollided = true;
-            p1.collision_angle = p2.angle;
-            p1.collision_speed = p2.speed;
-            p2.collision_angle = p1.angle;
-            p2.collision_speed = p1.speed;    
+            p2.hasCollided = true; 
             p1.collisionTimer = 60; // frames
             p2.collisionTimer = 60;
-
-            // Visual feedback - create explosion effect
-            createCollisionEffect(p1.x, p1.y, p2.x, p2.y);
 
             // Store collision event
             collisionEvents.push({
@@ -149,14 +138,6 @@ const canvas = document.getElementById('canvas');
                 y: (p1.y + p2.y) / 2,
                 time: Date.now()
             });
-        }
-
-        function createCollisionEffect(x1, y1, x2, y2) {
-            const centerX = (x1 + x2) / 2;
-            const centerY = (y1 + y2) / 2;
-            
-            // This could be expanded with particle effects
-            // For now, we'll just mark it visually in the next draw
         }
 
         function animate() {
