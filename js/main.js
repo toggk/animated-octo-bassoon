@@ -11,6 +11,7 @@ const canvas = document.getElementById('canvas');
 
         class Particle {
             constructor(x, y, type) {
+                this.mass = 1;
                 this.x = x;
                 this.y = y;
                 this.speed = 1 + Math.random() * 2;
@@ -33,10 +34,10 @@ const canvas = document.getElementById('canvas');
             }
 
             update() {
-                    
+                
                 if this.collision_speed {
                    if this.collision_speed == 0 {this.collision_angle = 0}
-                   else {this.collision_speed -= 3}
+                   else {this.collision_speed -= this.mass}
                 }
                 
                 if (this.hasCollided) {
