@@ -16,16 +16,6 @@
         <canvas id="canvas" width="800" height="600"></canvas>
     </div>
     
-    <div class="controls">
-        <div class="control-group">
-            <label>Matching Strategy:</label>
-            <select id="matchingStrategy">
-                <option value="greedy">Greedy (Nearest)</option>
-                <option value="optimal">Optimal (Hungarian)</option>
-                <option value="batch">Batch Matching</option>
-                <option value="predictive">Predictive</option>
-            </select>
-        </div>
 
         <div class="control-group">
             <label>Particle Type:</label>
@@ -44,20 +34,6 @@
         <div class="control-group">
             <label>Particle Count:</label>
             <input type="number" id="particleCount" min="1" max="50" value="10">
-        </div>
-
-        <div class="control-group">
-            <label class="checkbox-group">
-                <input type="checkbox" id="showGrid" onchange="toggleGrid()">
-                Show Grid
-            </label>
-        </div>
-
-        <div class="control-group">
-            <label class="checkbox-group">
-                <input type="checkbox" id="showHeatmap" onchange="toggleHeatmap()">
-                Show Heatmap
-            </label>
         </div>
 
         <div class="control-group">
