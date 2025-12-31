@@ -21,3 +21,30 @@ def speed_generator(initial_speed=0, acceleration=1, time_step=1):
     while True:
         yield current_speed
         current_speed += acceleration * time_step
+
+def compute_force(mass, initial_speed, final_speed, time_interval):
+    """
+    Compute force using F = ma, derived from change in speed.
+    
+    Force = mass × acceleration
+    Acceleration = (final_speed - initial_speed) / time_interval
+    
+    Parameters:
+    -----------
+    mass : float
+        Mass of the object (kg)
+    initial_speed : float
+        Initial speed (m/s)
+    final_speed : float
+        Final speed (m/s)
+    time_interval : float
+        Time over which speed change occurs (seconds)
+    
+    Returns:
+    --------
+    float
+        Force in Newtons (N)
+    """
+    acceleration = (final_speed - initial_speed) / time_interval
+    force = mass * acceleration
+    return force
