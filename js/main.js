@@ -12,9 +12,12 @@ const canvas = document.getElementById('canvas');
             constructor(x, y, type) {
                 this.x = x;
                 this.y = y;
+                this.speed = 1 + Math.random() * 2;
+                this.angle = Math.random() * Math.PI*2;    
                 this.type = type; // 'driver' or 'rider'
                 this.radius = 8;
-                
+                this.collisionAngle = 0;
+                this.collisionSpeed = 0;
                 // Random velocity
                 const speed = 1 + Math.random() * 2;
                 const angle = Math.random() * Math.PI * 2;
