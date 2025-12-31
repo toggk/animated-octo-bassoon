@@ -22,7 +22,7 @@ def speed_generator(initial_speed=0, acceleration=1, time_step=1):
         yield current_speed
         current_speed += acceleration * time_step
 
-def compute_force(mass, acceleration, time_interval):
+def compute_force(mass, initial_speed,final_speed, time_interval):
     """
     Compute force using F = ma, derived from change in speed.
     
