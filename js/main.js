@@ -2,6 +2,7 @@ const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         
         let particles = [];
+        let natural_deacceleration = -3
         let collisionRadius = 30;
         let isPaused = false;
         let showTrails = false;
