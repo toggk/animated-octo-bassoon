@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Particle Collision Simulation</title>
+    <title>Particle Collision Simulation</title>
     <link rel="stylesheet" href="assets/simulation.css">
     <link rel="script" href="js/main.js">
 </head>
 <body>
-    <h1>Advanced Particle Collision Simulation</h1>
-    <p class="subtitle">Spatial optimization • Heat mapping • Multiple matching strategies</p>
-    
+    <h1> Particle Collision Simulation</h1>
     <div class="canvas-container">
-        <canvas id="heatmapCanvas" width="800" height="600"></canvas>
         <canvas id="canvas" width="800" height="600"></canvas>
     </div>
     
@@ -75,10 +72,7 @@
         </div>
     </div>
 
-    <div class="info-panel">
-        <h3>Current Strategy: <span id="strategyName">Greedy (Nearest)</span></h3>
-        <p id="strategyDescription">Matches particles to their nearest neighbor of opposite type. Fast but may not be globally optimal.</p>
-        
+    <div class="info-panel">        
         <div class="legend">
             <div class="legend-item">
                 <div class="legend-color" style="background: #3b82f6;"></div>
@@ -91,10 +85,6 @@
             <div class="legend-item">
                 <div class="legend-color" style="background: #fbbf24;"></div>
                 <span>Matched</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #10b981;"></div>
-                <span>Predicted Match</span>
             </div>
         </div>
     </div>
